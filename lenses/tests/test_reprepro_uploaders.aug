@@ -43,6 +43,17 @@ test Reprepro_Uploaders.entry get
     { "by" = "anybody" } }
 
 (* Test: Reprepro_Uploaders.entry
+     Check the distribution condition. *)
+test Reprepro_Uploaders.entry get
+    "allow      distribution 'precise' by anybody\n" =
+
+  { "allow"
+    { "and"
+      { "or" = "distribution"
+              { "or" = "precise" } } }
+    { "by" = "anybody" } }
+
+(* Test: Reprepro_Uploaders.entry
      Some checks use the "contain" keyword to loosen the condition.
      In that case, a "contain" subnode is added. Be sure to check for it
      to know how the condition has to be checked.
